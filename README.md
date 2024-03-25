@@ -8,6 +8,9 @@ Code for the San Joaquin Valley Decarbonization Project
 ## Portfolios
 - Please add all portfolios to the ./data folder
 
+## Parameters
+- All parameters are contained in SJV Variable Architecture.xlsx
+  
 ## Output
 - All output is in ./output folder
 
