@@ -87,7 +87,7 @@ c2u_portfolios <- lapply(portfolios,
                          function(x) read_excel(x, sheet = "commodity_to_use"))
 
 portfolio_names <- portfolios %>% 
-  str_extract("SJV Portfolio.*xlsx")
+  str_extract("(?i)(?=.*Portfolio)(?!.*SKIP).*xlsx")
 
 portfolio_names <- gsub("^.+ - |.xlsx$", "", portfolio_names)
 
@@ -291,3 +291,4 @@ write_xlsx(list("Avoided Emissions" = final_output),
 
 write_xlsx(list("Robustness base" = robust_diffs),
            path = paste0("output/Portfolio Robustness ", today(), ".xlsx"))
+
