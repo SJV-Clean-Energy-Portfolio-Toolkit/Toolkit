@@ -81,15 +81,17 @@ f2c_conversion <- f2c_data$`F2C Conversion` %>%
 # Base Buildouts ----------------------------------------------------------
 
 portfolios <- list.files("data", pattern="*.xlsx", full.names = TRUE)
+portfolios <- portfolios[!grepl("(?i)tool", portfolios)]
+
 f2c_porfolios <- lapply(portfolios, 
                         function(x) read_excel(x, sheet = "feedstock_to_commodity"))
 c2u_portfolios <- lapply(portfolios, 
                          function(x) read_excel(x, sheet = "commodity_to_use"))
 
 portfolio_names <- portfolios %>% 
-  str_extract("(?i)(?=.*Portfolio)(?!.*SKIP).*xlsx")
+  str_extract("(?i)(?=.*Portfolio)(?!.*SKIP)(?!.*tool).*xlsx")
 
-portfolio_names <- gsub("^.+ - |.xlsx$", "", portfolio_names)
+portfolio_names <- gsub("^data/|.xlsx$", "", portfolio_names)
 
 names(f2c_porfolios) <- portfolio_names
 names(c2u_portfolios) <- portfolio_names
